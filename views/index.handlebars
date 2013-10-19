@@ -1,9 +1,30 @@
 <div id="content" class="container">
-  <h1>{{title}}</h1>
-  <p> Welcome to {{title}}</p>
+	<h1>{{title}}</h1>
+	<h2>Controls:</h2>
 
-  <button id="takeoff">Take Off</button>
-  <button id="land">Land</button>
+	<dl>
+		<dt>Up</dt>
+		<dd>a</dd>
+		<dt>Down</dt>
+		<dd>z</dd>
+		<dt>Forwards</dt>
+		<dd>arrow up</dd>
+		<dt>Backwards</dt>
+		<dd>arrow down</dd>
+		<dt>Left</dt>
+		<dd>arrow left</dd>
+		<dt>Right</dt>
+		<dd>arrow right</dd>
+	</dl>
+
+	<!--
+	<div id="stream">
+		<video controls><source src="/video" type='video/h264; codecs="h264"'></video>
+	</div>
+	-->
+
+	<button id="takeoff" disabled>Take Off</button>
+	<button id="land" disabled>Land</button>
 </div>
 
 {{{js "app.js"}}}

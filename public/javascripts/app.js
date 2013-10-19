@@ -1,38 +1,23 @@
-// e.g.  //= require main
-(function(global) {
-
-	global.app = {
+//= require controls
+//= require events
+require(['events'], function(Events) {
+	var app = {
 		connected: function() {
-			setupEvents();
+			events.start();
+		},
+		socket: io.connect('localhost'),
+		send: function(cmd, value) {
+			this.socket.emit('command', {
+				cmd: cmd,
+				value: value
+			});
 		}
 	};
 
-	var socket = io.connect('localhost');
+	var events = new Events(app);
 
-	socket.on('connect', function() {
+	app.socket.on('connect', function() {
 		app.connected();
 	});
 
-	app.send = function(cmd, value) {
-		socket.emit('command', {
-			cmd: cmd,
-			value: value
-		});
-	};
-
-	function setupEvents() {
-		$('button').prop('disabled', false);
-		$('#takeoff').on('click', function() {
-			app.send('takeoff');
-		});
-
-		$('#land').on('click', function() {
-			app.send('land');
-		});
-	}
-
-	$(function() {
-		$('button').prop('disabled', true);
-	});
-
-}(this));
+});

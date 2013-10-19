@@ -8,6 +8,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var _ = require('underscore');
 
 var SocketIO = require('socket.io');
 
@@ -15,6 +16,7 @@ var exphbs = require('express3-handlebars');
 var assets = require('connect-assets');
 
 var arDrone = require('ar-drone');
+var PaVEParser = require('ar-drone/lib/video/PaVEParser');
 
 var app = express();
 
@@ -45,17 +47,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+	app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/video', function(req, res) {
+	video.browser(req, res);
+});
 
 var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+	console.log('Express server listening on port ' + app.get('port'));
 });
 
 var drone = arDrone.createClient();
+
+var commandLength = 100,
+	doCommand = _.throttle(function (cmd, value) {
+		console.log('told drone to ', cmd, ' with value ', value);
+		drone[cmd](value);
+	}, commandLength);
 
 var io = SocketIO.listen(server);
 io.sockets.on('connection', function(socket) {
@@ -63,9 +74,28 @@ io.sockets.on('connection', function(socket) {
 
 	// do some stuff here
 	socket.on('command', function(data) {
-		var cmd = data.cmd,
-			value = data.value;
-
-		drone[cmd](value);
+		doCommand(data.cmd, data.value);
 	});
 });
+
+function video() {
+	var parser = new PaVEParser(),
+		video = drone.getVideoStream();
+
+	return parser;
+}
+
+video.browser = function(req, res) {
+	var stream = video();
+
+	res.writeHead(200, {
+		'Content-Type': 'video/h264',
+		'Transfer-Encoding': 'chunked'
+	});
+
+	stream.on('data', function(data) {
+		res.write(data);
+	}).on('error', function() {
+		res.end();
+	});
+};
