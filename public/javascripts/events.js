@@ -17,6 +17,7 @@ define('events', ['controls'], function(Controls) {
 		start: function() {
 			$('button').prop('disabled', false);
 			this.bindEvents(this.events);
+			this.controls.takePicture();
 		},
 		bindEvents: function(events) {
 			var self = this;
@@ -62,6 +63,9 @@ define('events', ['controls'], function(Controls) {
 					break;
 				case 39: // arrow right
 					this.controls.right();
+					break;
+				case 27: // escape
+					this.controls.land();
 					break;
 			}
 		},

@@ -35,6 +35,10 @@ define('controls', function() {
 			setTimeout(function() {
 				self.app.send('stop');
 			}, 200);
+			self.app.send('stop');
+		}, 250),
+		takePicture: _.debounce(function() {
+			this.app.send('takePicture');
 		}, 200)
 	});
 
