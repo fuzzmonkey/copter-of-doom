@@ -7,9 +7,18 @@ a {
 	color: #00B7FF;
 }
 
-canvas {
+#pictures {
 	float: right;
-	width: 500px;
-	height: 500px;
+	width: 960px;
+	height: 540px;
 	border: 1px solid black;
+}
+
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin-left: 0;
+	margin-bottom: 1em;
 }

@@ -1,11 +1,12 @@
-define('events', ['controls'], function(Controls) {
+define('events', ['controls', 'pictures'], function(Controls, Pictures) {
 	function Events(app) {
 		this.app = app;
 		this.controls = new Controls(app);
+		this.pictures = new Pictures(app);
 
 		this.events = {
-			'click #takeoff': 'takeoff',
-			'click #land': 'land',
+//			'click #takeoff': 'takeoff',
+//			'click #land': 'land',
 			'keydown body': 'keyboard',
 			'keyup body': 'stop'
 		};
@@ -63,6 +64,10 @@ define('events', ['controls'], function(Controls) {
 					break;
 				case 39: // arrow right
 					this.controls.right();
+					break;
+				case 13: // enter
+					this.controls.takeoff();
+					this.pictures.update();
 					break;
 				case 27: // escape
 					this.controls.land();

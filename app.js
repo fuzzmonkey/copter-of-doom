@@ -18,6 +18,7 @@ var assets = require('connect-assets');
 
 var arDrone = require('ar-drone');
 var PaVEParser = require('ar-drone/lib/video/PaVEParser');
+// var dronestream = require('dronestream');
 
 var app = express();
 
@@ -72,12 +73,14 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 });
 
 var drone = arDrone.createClient({
-	imageSize: '500x500',
-	frameRate: 25
+	imageSize: '960x540',
+	frameRate: 10
 });
 var io = SocketIO.listen(server, {
 	log: false
 });
+
+// dronestream.listen(server);
 
 var customCommands = {
 	takePicture: function(value, socket) {
@@ -111,24 +114,29 @@ io.sockets.on('connection', function(socket) {
 	});
 });
 
-//function video() {
-//	var parser = new PaVEParser(),
-//		video = drone.getVideoStream();
-//
-//	return parser;
-//}
-//
-//video.browser = function(req, res) {
-//	var stream = video();
-//
-//	res.writeHead(200, {
-//		'Content-Type': 'video/h264',
-//		'Transfer-Encoding': 'chunked'
-//	});
-//
-//	stream.on('data', function(data) {
-//		res.write(data);
-//	}).on('error', function() {
-//		res.end();
-//	});
-//};
+// function video() {
+// 	var parser = new PaVEParser(),
+// 		video = drone.getVideoStream();
+// 	
+// 	video.pipe(parser);
+// 
+// 	return parser;
+// }
+// 
+// video.browser = function(req, res) {
+// 	var stream = video();
+// 
+// 	res.writeHead(200, {
+// 		'Content-Type': 'video/h264',
+// 		'Transfer-Encoding': 'chunked'
+// 	});
+// 
+// 	stream.on('data', function(data) {
+// 		setImmediate(function() {
+// 			console.log('got data');
+// 			res.write(data.payload);
+// 		});
+// 	}).on('error', function() {
+// 		res.end();
+// 	});
+// };

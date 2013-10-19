@@ -12,6 +12,7 @@
 		"socket.io": "*",
 		"connect-assets": "*",
 		"leapjs": "*",
-		"underscore": "*"
+		"underscore": "*",
+		"dronestream": "*"
 	}
 }
