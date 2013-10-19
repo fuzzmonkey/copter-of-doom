@@ -72,7 +72,8 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 });
 
 var drone = arDrone.createClient({
-	imageSize: '500x500'
+	imageSize: '500x500',
+	frameRate: 25
 });
 var io = SocketIO.listen(server, {
 	log: false

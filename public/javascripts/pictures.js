@@ -14,7 +14,7 @@ define('pictures', function() {
 				self.context.drawImage(img, 0, 0);
 				setTimeout(function() {
 					self.update();
-				}, 200);
+				}, 40);
 			});
 			img.addEventListener('error', function() {
 				console.log('image not ready');
