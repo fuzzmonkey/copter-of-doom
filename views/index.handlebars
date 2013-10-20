@@ -1,22 +1,26 @@
 <div id="content" class="container">
 	<h1>{{title}}</h1>
-	<table class='drone-info'>
-		<tbody>
-			<tr>
-				<td>Altitude: <span id='altitude'></span></td>
-				<td>Battery %: <span id='battery'></span></td>
-				<td>Fly State: <span id='fly-state'></span></td>
-				<td>Control State: <span id='control-state'></span></td>
-			</tr>
-		</tbody>
-	</table>
-
+	<ul class='drone-info'>
+		<li>
+			<div class='label'>Altitude:</div>
+			<div id='altitude'>-</div>
+		</li>
+		<li>
+			<div class='label'>Battery %:</div>
+			<div id='battery'>-</div>
+		</li>
+		<li>
+			<div class='label'>Fly State: </div>
+			<div id='fly-state'>-</div>
+		</li>
+		<li>
+			<div class='label'>Control State:</div>
+			<div id='control-state'>-</div>
+		</li>
+	</ul>
 	<h2>Controls:</h2>
 
 	<canvas id="pictures"></canvas>
-	<!--
-	<div id="pictures"></div>
-	-->
 
 	<dl>
 		<dt>Up</dt>

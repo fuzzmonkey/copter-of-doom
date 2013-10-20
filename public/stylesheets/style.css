@@ -27,6 +27,26 @@ dd {
 	margin-bottom: 1em;
 }
 
-table.drone-info tbody tr td {
-  min-width:200px;
+ul.drone-info {
+  list-style:none;
+  position:absolute;
+  top:30px;
+  right:30px;
+  width:300px;
+  padding:0;
+  margin:0;
+}
+
+ul.drone-info li div {
+  float:left;
+  text-align:right;
+}
+
+ul.drone-info li div.label {
+  font-weight:bold;
+  width:150px;
+}
+
+ul.drone-info li div {
+  width:150px;
 }
