@@ -108,10 +108,10 @@ var commandLength = 100,
 io.sockets.on('connection', function(socket) {
 	console.log('user connected');
 
-	socket.emit('navdata', { altitudeMeters: 'no nav data' });
+	socket.emit('navdata', { altitudeMeters: 'no nav data', batteryPercent: 'n/a' });
 
 	drone.on('navdata', function(navdata) {
-		socket.emit('navdata', { altitudeMeters: navdata.demo.altitudeMeters });
+		socket.emit('navdata', { altitudeMeters: navdata.demo.altitudeMeters, batteryPercent: navdata.demo.batteryPercentage });
 	});
 
 	// do some stuff here
