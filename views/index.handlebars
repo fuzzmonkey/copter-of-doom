@@ -1,12 +1,35 @@
 <div id="content" class="container">
 	<h1>{{title}}</h1>
+	<ul class='drone-info'>
+		<li>
+			<div class='label'>Altitude:</div>
+			<div id='altitude'>-</div>
+		</li>
+		<li>
+			<div class='label'>Battery %:</div>
+			<div id='battery'>-</div>
+		</li>
+		<li>
+			<div class='label'>Fly State: </div>
+			<div id='fly-state'>-</div>
+		</li>
+		<li>
+			<div class='label'>Control State:</div>
+			<div id='control-state'>-</div>
+		</li>
+	</ul>
 	<h2>Controls:</h2>
-
-	<canvas id="pictures"></canvas>
-	<!--
-	<div id="pictures"></div>
-	-->
-
+	<canvas id="videoCanvas" width="640" height="360"></canvas>
+	<script type="text/javascript">
+		// Show loading notice
+		var canvas = document.getElementById('videoCanvas');
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle = '#444';
+		ctx.fillText('Loading...', canvas.width / 2 - 30, canvas.height / 3);
+		// Setup the WebSocket connection and start the player
+		var client = new WebSocket('ws://localhost:8084/');
+		var player = new jsmpeg(client, { canvas: canvas });
+	</script>
 	<dl>
 		<dt>Up</dt>
 		<dd>a</dd>

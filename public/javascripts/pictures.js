@@ -2,9 +2,7 @@ define('pictures', function() {
 	function Pictures(app) {
 		this.app = app;
 		this.canvas = $('#pictures')[0];
-		if ('getContext' in this.canvas) {
-			this.context = this.canvas.getContext('2d');
-		}
+		//if ('getContext' in this.canvas) { this.context = this.canvas.getContext('2d'); }
 	}
 
 	$.extend(Pictures.prototype, {

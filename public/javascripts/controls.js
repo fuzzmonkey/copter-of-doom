@@ -6,9 +6,11 @@ define('controls', function() {
 
 	$.extend(Controls.prototype, {
 		takeoff: function() {
+			this.app.flying = true;
 			this.app.send('takeoff');
 		},
 		land: function() {
+			this.app.flying = false;
 			this.app.send('land');
 		},
 		up: _.throttle(function() {
@@ -36,10 +38,7 @@ define('controls', function() {
 				self.app.send('stop');
 			}, 200);
 			self.app.send('stop');
-		}, 250),
-		takePicture: _.debounce(function() {
-			this.app.send('takePicture');
-		}, 200)
+		}, 250)
 	});
 
 	return Controls;
