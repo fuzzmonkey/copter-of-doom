@@ -1,6 +1,10 @@
 body {
-	padding: 50px;
+	padding: 20px;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  margin-top:0;
 }
 
 a {
@@ -21,4 +25,28 @@ dt {
 dd {
 	margin-left: 0;
 	margin-bottom: 1em;
+}
+
+ul.drone-info {
+  list-style:none;
+  position:absolute;
+  top:30px;
+  right:30px;
+  width:300px;
+  padding:0;
+  margin:0;
+}
+
+ul.drone-info li div {
+  float:left;
+  text-align:right;
+}
+
+ul.drone-info li div.label {
+  font-weight:bold;
+  width:150px;
+}
+
+ul.drone-info li div {
+  width:150px;
 }

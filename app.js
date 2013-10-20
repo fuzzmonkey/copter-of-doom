@@ -79,6 +79,12 @@ var commandLength = 100,
 io.sockets.on('connection', function(socket) {
 	console.log('user connected');
 
+	socket.emit('navdata', { altitudeMeters: 'no nav data', batteryPercent: 'n/a' });
+
+	drone.on('navdata', function(navdata) {
+		socket.emit('navdata', { navdata: navdata.demo });
+	});
+
 	// do some stuff here
 	socket.on('command', function(data) {
 		doCommand(data.cmd, data.value, socket);
