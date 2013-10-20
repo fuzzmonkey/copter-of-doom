@@ -17,7 +17,7 @@ define('events', ['controls', 'pictures'], function(Controls, Pictures) {
 		start: function() {
 			$('button').prop('disabled', false);
 			this.bindEvents(this.events);
-			// this.controls.takePicture();
+			this.controls.takePicture();
 		},
 		bindEvents: function(events) {
 			var self = this;

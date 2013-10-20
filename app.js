@@ -17,7 +17,7 @@ var exphbs = require('express3-handlebars');
 var assets = require('connect-assets');
 
 var arDrone = require('ar-drone');
-// var PaVEParser = require('ar-drone/lib/video/PaVEParser');
+var PaVEParser = require('ar-drone/lib/video/PaVEParser');
 // var dronestream = require('dronestream');
 
 var app = express();
@@ -84,14 +84,14 @@ var io = SocketIO.listen(server, {
 
 var customCommands = {
 	takePicture: function(value, socket) {
-		// var stream = drone.getPngStream();
-		// 	stream.on('data', function(data) {
-		// 		try {
-		// 			lastPng = data;
-		// 		} catch(e) {
-		// 			console.log('error');
-		// 		}
-		// 	});
+		var stream = drone.getPngStream();
+		stream.on('data', function(data) {
+			try {
+				lastPng = data;
+			} catch(e) {
+				console.log('error');
+			}
+		});
 	}
 };
 
