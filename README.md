@@ -22,8 +22,33 @@ Installation Instructions
 Usage Instructions
 ------------------
 
-- Press the takeoff button to take off
-- Press the land button to land
+- Keyboard commands are:
+  - enter to take off
+  - escape to land
+  - "a" to go up
+  - "z" to go down
+  - arrow up to go forwards
+  - arrow down to go backwards
+  - arrow left to go left
+  - arrow right to go right
+- Leap Motion controls are:
+  - open hand to take off
+  - tilt forward to go forward
+  - tilt back to go back
+  - tilt left to go left
+  - tilt right to go right
+  - raise hand to go up
+  - lower hand to go down
+- Voice commands are:
+  - "take off"
+  - "land"
+  - "stop"
+  - "up"
+  - "down"
+  - "left"
+  - "right"
+  - "forwards"
+  - "backwards"
 
 More Info
 ---------
