@@ -4,15 +4,18 @@
   (:import [edu.cmu.sphinx.frontend.util Microphone]
            [edu.cmu.sphinx.recognizer Recognizer]
            [edu.cmu.sphinx.result Result]
-           [edu.cmu.sphinx.util.props ConfigurationManager])
+           [edu.cmu.sphinx.util.props ConfigurationManager]
+           [java.net ConnectException])
   (:gen-class))
 
 (def node-server "http://localhost:3000/")
 
 (defn send-command [cmd value]
-  (http/post (str node-server "commands")
+  (try (http/post (str node-server "commands")
              {:form-params {:cmd cmd
-                            :value value}}))
+                            :value value}})
+    (catch ConnectException e
+      (println "post failed"))))
 
 (def commands {"take off" ["takeoff" nil]
                "land" ["land" nil]
