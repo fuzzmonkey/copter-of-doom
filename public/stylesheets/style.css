@@ -7,10 +7,10 @@ a {
 	color: #00B7FF;
 }
 
-#pictures {
+#videoCanvas {
 	float: right;
-	width: 960px;
-	height: 540px;
+	width: 640;
+	height: 360;
 	border: 1px solid black;
 }
 

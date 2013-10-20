@@ -11,8 +11,8 @@
 		"ar-drone": "*",
 		"socket.io": "*",
 		"connect-assets": "*",
+    "ws": "*",
 		"leapjs": "*",
-		"underscore": "*",
-		"dronestream": "*"
+		"underscore": "*"
 	}
 }
