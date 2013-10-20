@@ -11,7 +11,6 @@ define('events', ['controls', 'pictures'], function(Controls, Pictures) {
 			'keyup body': 'stop'
 		};
 
-
 	}
 
 	$.extend(Events.prototype, {
