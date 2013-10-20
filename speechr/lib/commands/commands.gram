@@ -6,4 +6,4 @@
 
 grammar commands;
 
-public <control> = (Take off | Land | Stop | Up | Down | Left | Right);
+public <control> = (Take off | Land | Stop | Up | Down | Left | Right | Forwards | Backwards);
