@@ -8,10 +8,14 @@ Installation Instructions
 
 1. Install Node.js
 2. `brew install ffmpeg`
-3. checkout this repository
-4. cd into the repository
-5. `npm install`
-6. `node app.js`
+3. Install Leiningen
+4. checkout this repository
+5. cd into the repository
+6. `npm install`
+7. cd into speechr
+8. `lein run`
+9. `cd ..`
+10. `node app.js`
 7. open http://localhost:3000/
 
 Usage Instructions

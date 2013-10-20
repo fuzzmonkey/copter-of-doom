@@ -51,6 +51,14 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.post('/commands', function(req, res) {
+	var cmd = req.body.cmd,
+		value = req.body.value;
+
+	doCommand(cmd, value, res);
+	res.writeHead(204);
+	res.end();
+});
 
 var server = http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));

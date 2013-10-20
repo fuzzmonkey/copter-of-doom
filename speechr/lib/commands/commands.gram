@@ -1,0 +1,9 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar for Speechr Parrot AR.Drone Copter control
+ */
+
+grammar commands;
+
+public <control> = (Take off | Land | Stop | Up | Down | Left | Right | Forwards | Backwards);
