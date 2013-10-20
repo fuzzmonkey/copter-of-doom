@@ -17,6 +17,7 @@
   "dependencies": {
     "jquery": "~2.0.3",
     "underscore": "~1.5.2",
-    "requirejs": "~2.1.9"
+    "requirejs": "~2.1.9",
+    "leapjs": "0.2.1"
   }
 }

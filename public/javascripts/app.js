@@ -1,8 +1,10 @@
 //= require controls
 //= require events
 //= require pictures
-require(['events'], function(Events) {
+//= require leap-controls
+require(['events','leapControls'], function(Events, LeapControls) {
 	var app = {
+		flying: false,
 		connected: function() {
 			events.start();
 		},
@@ -16,6 +18,8 @@ require(['events'], function(Events) {
 	};
 
 	var events = new Events(app);
+	var leap = new LeapControls(app);
+	leap.eventLoop();
 
 	app.socket.on('connect', function() {
 		app.connected();

@@ -11,14 +11,13 @@ define('events', ['controls', 'pictures'], function(Controls, Pictures) {
 			'keyup body': 'stop'
 		};
 
-
 	}
 
 	$.extend(Events.prototype, {
 		start: function() {
 			$('button').prop('disabled', false);
 			this.bindEvents(this.events);
-			this.controls.takePicture();
+			// this.controls.takePicture();
 		},
 		bindEvents: function(events) {
 			var self = this;

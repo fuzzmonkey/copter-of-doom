@@ -6,9 +6,11 @@ define('controls', function() {
 
 	$.extend(Controls.prototype, {
 		takeoff: function() {
+			this.app.flying = true;
 			this.app.send('takeoff');
 		},
 		land: function() {
+			this.app.flying = false;
 			this.app.send('land');
 		},
 		up: _.throttle(function() {
