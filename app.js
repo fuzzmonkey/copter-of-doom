@@ -79,7 +79,14 @@ var commandLength = 100,
 io.sockets.on('connection', function(socket) {
 	console.log('user connected');
 
-	socket.emit('navdata', { navdata: { altitudeMeters: 'no nav data', batteryPercent: 'n/a' } });
+	socket.emit('navdata', {
+		navdata: {
+			altitudeMeters: 'n/a',
+			batteryPercent: 'n/a',
+			controlState: 'n/a',
+			flyState: 'n/a'
+		}
+	});
 
 	drone.on('navdata', function(navdata) {
 		socket.emit('navdata', { navdata: navdata.demo });
@@ -98,9 +105,9 @@ var STREAM_SECRET = 'test',
 
 var width = 640,
     height = 360;
-//
+
 // Websocket Server
-var socketServer = new (require('ws').Server)({port: WEBSOCKET_PORT});
+var socketServer = new (require('ws').Server)({ port: WEBSOCKET_PORT });
 socketServer.on('connection', function(socket) {
 	// Send magic bytes and video size to the newly connected socket
 	// struct { char magic[4]; unsigned short width, height;}
@@ -110,15 +117,16 @@ socketServer.on('connection', function(socket) {
 	streamHeader.writeUInt16BE(height, 6);
 	socket.send(streamHeader, {binary:true});
 
-	console.log( 'New WebSocket Connection ('+socketServer.clients.length+' total)' );
-	
+	console.log('New WebSocket Connection (' + socketServer.clients.length + ' total)');
+
 	socket.on('close', function(code, message){
-		console.log( 'Disconnected WebSocket ('+socketServer.clients.length+' total)' );
+		console.log('Disconnected WebSocket (' + socketServer.clients.length + ' total)');
 	});
 });
 
 socketServer.broadcast = function(data, opts) {
-	for( var i in this.clients ) {
+	var i;
+	for(i in this.clients) {
 		this.clients[i].send(data, opts);
 	}
 };
@@ -130,25 +138,20 @@ var streamServer = require('http').createServer( function(request, response) {
 	width = (params[1] || 320)|0;
 	height = (params[2] || 240)|0;
 
-	if( params[0] == STREAM_SECRET ) {
-		console.log(
-			'Stream Connected: ' + request.socket.remoteAddress + 
-			':' + request.socket.remotePort + ' size: ' + width + 'x' + height
-		);
-		request.on('data', function(data){
-			socketServer.broadcast(data, {binary:true});
+	if (params[0] == STREAM_SECRET) {
+		console.log('Stream Connected: ' + request.socket.remoteAddress +
+			':' + request.socket.remotePort + ' size: ' + width + 'x' + height);
+		request.on('data', function(data) {
+			socketServer.broadcast(data, { binary: true });
 		});
-	}
-	else {
-		console.log(
-			'Failed Stream Connection: '+ request.socket.remoteAddress + 
-			request.socket.remotePort + ' - wrong secret.'
-		);
+	} else {
+		console.log('Failed Stream Connection: '+ request.socket.remoteAddress +
+			request.socket.remotePort + ' - wrong secret.');
 		response.end();
 	}
 }).listen(STREAM_PORT);
 
-console.log('Listening for MPEG Stream on http://127.0.0.1:'+STREAM_PORT+'/<secret>/<width>/<height>');
-console.log('Awaiting WebSocket connections on ws://127.0.0.1:'+WEBSOCKET_PORT+'/');
+console.log('Listening for MPEG Stream on http://127.0.0.1:' + STREAM_PORT + '/<secret>/<width>/<height>');
+console.log('Awaiting WebSocket connections on ws://127.0.0.1:' + WEBSOCKET_PORT + '/');
 console.log('Examples:');
-console.log('ffmpeg -i tcp://192.168.1.1:5555 -f mpeg1video -b 0 -b:v 800k -r 30 http://127.0.0.1:'+STREAM_PORT+'/test/640/360/');
+console.log('ffmpeg -i tcp://192.168.1.1:5555 -f mpeg1video -b 0 -b:v 800k -r 30 http://127.0.0.1:' + STREAM_PORT + '/test/640/360/');
