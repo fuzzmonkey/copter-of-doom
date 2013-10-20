@@ -12,8 +12,10 @@ define('socket', function() {
 			app.connected();
 		});
 		app.socket.on('navdata', function (data) {
-			$("#altitude").html(data.altitudeMeters);
-			$("#battery").html(data.batteryPercent);
+			$("#altitude").html(data.navdata.altitudeMeters);
+			$("#battery").html(data.navdata.batteryPercent);
+			$("#fly-state").html(data.navdata.controlState);
+			$("#control-state").html(data.navdata.flyState);
 		});
 	}
 

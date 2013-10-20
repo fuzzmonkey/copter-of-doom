@@ -1,7 +1,16 @@
 <div id="content" class="container">
 	<h1>{{title}}</h1>
-	<h2>Altitude: <span id='altitude'></span></h2>
-	<h2>Battery %: <span id='battery'></span></h2>
+	<table class='drone-info'>
+		<tbody>
+			<tr>
+				<td>Altitude: <span id='altitude'></span></td>
+				<td>Battery %: <span id='battery'></span></td>
+				<td>Fly State: <span id='fly-state'></span></td>
+				<td>Control State: <span id='control-state'></span></td>
+			</tr>
+		</tbody>
+	</table>
+
 	<h2>Controls:</h2>
 
 	<canvas id="pictures"></canvas>

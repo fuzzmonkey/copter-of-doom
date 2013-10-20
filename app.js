@@ -111,7 +111,7 @@ io.sockets.on('connection', function(socket) {
 	socket.emit('navdata', { altitudeMeters: 'no nav data', batteryPercent: 'n/a' });
 
 	drone.on('navdata', function(navdata) {
-		socket.emit('navdata', { altitudeMeters: navdata.demo.altitudeMeters, batteryPercent: navdata.demo.batteryPercentage });
+		socket.emit('navdata', { navdata: navdata.demo });
 	});
 
 	// do some stuff here

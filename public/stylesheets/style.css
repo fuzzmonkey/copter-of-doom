@@ -1,6 +1,10 @@
 body {
-	padding: 50px;
+	padding: 20px;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  margin-top:0;
 }
 
 a {
@@ -21,4 +25,8 @@ dt {
 dd {
 	margin-left: 0;
 	margin-bottom: 1em;
+}
+
+table.drone-info tbody tr td {
+  min-width:200px;
 }
