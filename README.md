@@ -7,11 +7,12 @@ Installation Instructions
 -------------------------
 
 1. Install Node.js
-2. checkout this repository
-3. cd into the repository
-4. `npm install`
-5. `node app.js`
-6. open http://localhost:3000/
+2. `brew install ffmpeg`
+3. checkout this repository
+4. cd into the repository
+5. `npm install`
+6. `node app.js`
+7. open http://localhost:3000/
 
 Usage Instructions
 ------------------
